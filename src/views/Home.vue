@@ -5,17 +5,40 @@
       <el-button @click="logout">退出</el-button>
     </el-header>
     <el-container>
-      <el-aside width="200px">Aside</el-aside>
-      <el-main>Main</el-main>
+      <el-aside width="200px">
+        <AsideMenus />
+      </el-aside>
+      <el-main>
+        <!-- <el-breadcrumb separator="/">
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item><a href="/">活动管理</a></el-breadcrumb-item>
+        </el-breadcrumb> -->
+        <router-view/>
+      </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
+import AsideMenus from '@/views/home/asideMenus'
+
 
 export default {
   name: "Home",
-  components: {},
+  components: {
+    AsideMenus
+  },
+  data(){
+    return{
+      breads:{
+        users:'用户管理',
+
+      }
+    }
+  },
+  created(){
+    
+  },
   methods: {
     logout() {
       window.localStorage.clear("user");
@@ -37,7 +60,7 @@ export default {
 }
 
 .el-aside {
-  background-color: #d3dce6;
+  background-color: #545c64;
   color: #333;
   text-align: center;
   line-height: 200px;
