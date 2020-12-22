@@ -20,5 +20,18 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+// 登录校验
+router.beforeEach((to,from,next)=>{
+  if(to.path !== '/login'){
+    if(window.localStorage.getItem('user')){
+      next()
+    }else{
+      next('/login')
+    }
+  }else{
+    next()
+  }
+})
+
 
 export default router
